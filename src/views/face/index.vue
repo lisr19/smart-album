@@ -1,0 +1,317 @@
+<template>
+	<div class="page"  @click="showTip=false">
+		<div class="head-bar">
+			<img src="@/assets/img/back.png" @click="$router.back()">
+			<div style="display: flex;align-items: center">
+				<img src="@/assets/img/all.png" @click.stop="shoewAll" style="margin-right: 30px">
+				<img src="@/assets/img/menu.png"  @click.stop="showTip=!showTip">
+				<div class="tip-box" v-if="showTip">
+					<p >教程</p>
+					<p >设置</p>
+					<p >帮助&反馈</p>
+				</div>
+			</div>
+		</div>
+		<div class="main">
+			<template v-if="!isAllImg">
+				<img class="big-img" :src="cuurImg" alt="">
+				<div class="wrap-box">
+					<swiper class="items" :options="swiperOption" ref="mySwiper">
+						<!-- slides -->
+						<swiper-slide class="item" v-for="(item,index) in imgList" :key="index">
+							<img :class="{active:currIndex===index}"  :src="item.picUrl" alt=""  @click.stop="selctImg(item,index)">
+							<!--<p>{{item.name}}</p>-->
+						</swiper-slide>
+					</swiper>
+
+				</div>
+			</template>
+			<template v-else>
+				<div class="img-box">
+					<div class="img-item" v-for="(item,index) in imgList">
+						<img :src="item.picUrl" alt="" >
+					</div>
+				</div>
+			</template>
+		</div>
+		<van-tabbar v-model="active" @change="">
+			<van-tabbar-item  @click="tabNav('对比')" >
+				<span style="color: #2D7AFF">人脸对比</span>
+				<img slot="icon" src="@/assets/img/icon4.png">
+			</van-tabbar-item>
+			<van-tabbar-item icon="search"  @click="tabNav('过滤')"
+			>
+				<span style="color: #2D7AFF">滤镜效果</span>
+				<img slot="icon" src="@/assets/img/icon5.png">
+			</van-tabbar-item>
+			<van-tabbar-item @click="tabNav('特写')">
+				<span style="color: #2D7AFF">镜头特写</span>
+				<img slot="icon" src="@/assets/img/icon6.png">
+			</van-tabbar-item>
+			<van-tabbar-item @click="tabNav('聚类')">
+				<span style="color: #2D7AFF">人脸聚类</span>
+				<img slot="icon" src="@/assets/img/icon7.png">
+			</van-tabbar-item>
+		</van-tabbar>
+		<loading v-if="isLoading"></loading>
+	</div>
+</template>
+<script>
+	import {mapState} from 'vuex'
+	import loading from '@/components/loading/loading'
+	export default {
+
+		components:{
+			loading
+		},
+		computed:{
+			...mapState({
+				imgList:state=>state.user.imgList,
+				copy_img_list:state=>state.user.copy_img_list,
+			}),
+		},
+		data(){
+			return{
+				showTip:false,
+				fileList: [],
+				img_closeuped:'',
+				showTwo:false,
+				isLoading:false,
+				isAllImg:false,
+				cuurImg:'',
+				cuurName:'',
+				currIndex:0,
+				active: 0,
+				icon: {
+					active: 'https://img.yzcdn.cn/vant/user-active.png',
+					inactive: 'https://img.yzcdn.cn/vant/user-inactive.png'
+				},
+				swiperOption: {
+					notNextTick: true,
+					slidesPerView: 'auto',
+					spaceBetween: 10,
+				},
+			}
+		},
+		created(){
+			this.cuurImg = this.imgList[0].picUrl
+			this.cuurName = this.imgList[0].name
+			this.access_token = localStorage.getItem('access_token')
+		},
+		mounted(){
+		},
+		methods:{
+			tabNav(type){
+				console.log(type);
+				if(type==='过滤'){
+					this.$router.push({name:'过滤',query:{cuurImg:this.cuurImg,cuurName:this.cuurName}})
+				}else if(type==='特写'){
+					this.openClus()
+				}else if(type==='聚类'){
+					this.$router.push({name:'选择',query:{from:'聚类'}})
+				}else {
+					this.$router.push({name:'对比'})
+				}
+			},
+			upFaceImg(){
+				this.isLoading = true
+				this.title = '筛选人脸图片中…'
+				setTimeout(()=>{
+					let params ={
+						access_token:localStorage.getItem('access_token'),
+						choiceimg_list:this.copy_img_list
+					}
+					axios.post('http://wanfanji.3322.org:13478/people_album/human_list',params).then((res)=> {
+						if (res.status == "200") {
+							if(res.data.status.code===0){
+								let data = res.data.data
+								this.img_list = data.human_list
+								this.isLoading = false
+								setTimeout(()=>{
+									this.initImg()
+								},500)
+							}else{
+								this.isLoading = false
+								this.$toast(res.data.status.msg)
+							}
+						} else {
+						}
+					}).catch( (res) =>{
+						setTimeout(()=>{
+							this.isLoading = false
+							this.$toast('接口失败')
+						},500)
+						console.log(res);
+					})
+				},5000)
+			},
+			initImg(){
+				let arr = []
+				for (let i in this.img_list) {
+					let o={
+						name:i,
+						picUrl:'http://wanfanji.3322.org:13478/'+this.img_list[i].split("smart_albums/")[1]
+					};
+					arr.push(o)
+				}
+				this.imgList = arr
+				this.$store.dispatch('setFaceImgList',this.imgList)
+				console.log(this.imgList);
+				this.cuurImg = this.imgList[0].picUrl
+				this.cuurName = this.imgList[0].name
+			},
+			//特写
+			openClus(){
+				this.isLoading = true
+				setTimeout(()=>{
+					let params ={
+						access_token:localStorage.getItem('access_token'),
+						closeup_img:{
+							[this.cuurName]: '/home/cyfee/my_project/web/smart_albums/static/photos/'+this.cuurImg.split("photos/")[1],
+							// [this.cuurName]: '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuycJB/'+this.cuurImg.split("xMiIsQy01MuycJB/")[1],
+						}
+					}
+					axios.post('http://wanfanji.3322.org:13478/fancyTime/image_closeUp',params).then((res)=> {
+						if (res.status == "200") {
+							if(res.data.status.code===0){
+								let data = res.data.data
+								this.img_closeuped =data.img_closeuped
+								setTimeout(()=>{
+									this.isLoading = false
+									this.$router.push({name:'保存',query:{cuurImg:this.img_closeuped,cuurName:this.cuurName}})
+								},1500)
+							}else{
+								this.$toast(res.data.status.msg)
+							}
+						} else {
+						}
+					}).catch( (res) =>{
+						setTimeout(()=>{
+							this.isLoading = false
+							this.$toast('接口失败')
+						},5000)
+						console.log(res);
+					})
+				},5000)
+			},
+			selctImg(item,index){
+				this.cuurImg = item.picUrl
+				this.cuurName = item.name
+				this.currIndex =index
+			},
+			shoewAll(){
+				this.isAllImg=!this.isAllImg
+			}
+		}
+	}
+</script>
+<style>
+</style>
+<style lang="less" scoped>
+	.page{
+		height: 100%;
+		.head-bar{
+			line-height: 150px;
+			height: 150px;
+			font-size:32px;
+			font-family:PingFangSC-Medium,PingFang SC;
+			font-weight:500;
+			padding: 0 48px;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			img{
+				height: 60px;
+				z-index: 2;
+				justify-self: flex-end;
+			}
+			.tip-box{
+				width:276px;
+				background:rgba(106,106,106,1);
+				position: absolute;
+				right: 32px;
+				top: 120px;
+				border-radius: 20px;
+				padding:10px 35px;
+				box-sizing: border-box;
+				font-size:32px;
+				font-family:PingFangSC-Regular,PingFang SC;
+				font-weight:400;
+				color:rgba(255,255,255,1);
+				line-height:44px;
+				p{
+					text-align: left;
+					font-size:32px;
+					font-family:PingFangSC-Regular,PingFang SC;
+					font-weight:400;
+					color:rgba(255,255,255,1);
+					line-height:88px;
+				}
+				p:first-child{
+					border-bottom:solid 2px #626262 ;
+				}
+			}
+		}
+		.main{
+			.big-img{
+				width:674px;
+				height:682px;
+				background: #d3adf7;
+				display: block;
+				margin: 30px auto 90px;
+				text-align: center;
+				border-radius: 10px;
+			}
+			.wrap-box{
+				overflow: hidden;
+				position: relative;
+				/*border-top: #B3B3B3 solid 0.5px;*/
+				.items{
+					height: 248px;
+					padding:44px 20px 44px;
+					.item{
+						font-size:28px;
+						font-family:PingFangSC-Regular;
+						font-weight:400;
+						color:rgba(51,51,51,1);
+						width:160px;
+						img{
+							width:158px;
+							height:160px;
+							margin: 10px 0;
+							display: block;
+							border-radius: 8px;
+						}
+						.active{
+							position: absolute;
+							bottom: 90px;
+						}
+					}
+				}
+			}
+			.wrap-box::after{
+				content: '';
+				width: 200%;
+				height: 200%;
+				position: absolute;
+				top: 0;
+				left: 0;
+				border: 1px solid #B3B3B3;
+				border-radius: 4px;
+				-webkit-transform: scale(0.5,0.5);
+				transform: scale(0.5,0.5);
+				-webkit-transform-origin: top left;
+			}
+		}
+		.img-box{
+			display: flex;
+			flex-wrap: wrap;
+			img{
+				width:180px;
+				height:180px;
+				display: inline-block;
+				margin: 3px;
+			}
+		}
+	}
+</style>

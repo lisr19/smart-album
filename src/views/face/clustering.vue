@@ -1,0 +1,181 @@
+<template>
+	<div class="page">
+		<div class="head-bar">
+			<img  src="@/assets/img/back.png" @click="$router.back()">
+			<div style="display: flex;align-items: center">
+				<span class="h-btn" @click="comFn">保存</span>
+			</div>
+		</div>
+		<div class="main">
+			<div class="card">
+				<p class="title">
+					<input type="text" v-model="classOne">
+				</p>
+				<div class="img-box">
+					<div class="img-item" v-for="(item,index) in imgList"  >
+						<img :src="item.picUrl" alt="" >
+					</div>
+				</div>
+			</div>
+			<div class="card">
+				<p class="title">
+					<input type="text" v-model="classTwo">
+				</p>
+				<div v-if="imgList2.length==0" style="margin-top: 20px">暂无</div>
+				<div class="img-box">
+					<div class="img-item" v-for="(item,index) in imgList2"  @click="choiceImg(item,index)" >
+						<img :src="item.picUrl" alt="" >
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+<script>
+	export default {
+		data(){
+			return{
+				classOne:'分组1',
+				classTwo:'分组2',
+				cuurImg:null,
+				isAll: false,
+				imgList:[],
+				imgList2:[],
+			}
+		},
+		created(){
+			this.class_result = this.$route.params.class_result
+			this.class_num = this.$route.params.class_num
+			let array = Object.keys(this.class_result).map(key=> this.class_result[key])
+			this.imgList = array[0]
+			this.imgList2 = array[1]
+
+		},
+		mounted(){
+			this.initImg()
+		},
+		methods:{
+			initImg(){
+				let arr1 = []
+				let arr2 = []
+				for(let i in this.imgList){
+					arr1.push({picUrl:this.imgList[i]})
+				}
+				for(let i in this.imgList2){
+					arr2.push({picUrl:this.imgList2[i]})
+				}
+				console.log(arr1);
+				console.log(arr2);
+				this.imgList=arr1
+				this.imgList2=arr2
+			},
+			openDetail(){
+				this.$router.push({name:'择优结果'})
+			},
+			comFn(){
+				this.$toast('保存成功')
+				// this.$router.push({name:'保存'})
+			},
+			choiceAll(){
+				this.imgList.forEach((item)=>{
+					this.$set(item, 'checked', true)
+					this.isAll =true
+				})
+				this.selItemList = this.imgList
+			},
+			choiceImg(item,index){
+				this.selItemList=[]
+				if (typeof item.checked == 'undefined') {
+					this.$set(item, 'checked', true)
+				} else {
+					item.checked = !item.checked
+				}
+				for (let i = 0; i < this.imgList.length; i++) {
+					if (this.imgList[i].checked) {
+						this.selItemList.push(this.imgList[i])
+					}
+				}
+			},
+		}
+	}
+</script>
+<style>
+
+</style>
+<style lang="less" scoped>
+	.page{
+		height: 100%;
+		.head-bar{
+			line-height: 120px;
+			height: 120px;
+			font-size:32px;
+			font-family:PingFangSC-Medium,PingFang SC;
+			font-weight:500;
+			padding: 0 38px;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			img{
+				height:60px;
+				z-index: 2;
+				justify-self: flex-end;
+			}
+			.icon{
+				display: flex;
+				align-items: center;
+				span{
+					font-size:32px;
+				}
+			}
+		}
+		.main {
+			.card{
+				.title{
+					font-size:32px;
+					font-family:PingFangSC-Medium,PingFang SC;
+					font-weight:500;
+					padding: 10px 38px;
+					text-align: left;
+					background-color:#eceef2;
+					input{
+						border: none;
+						background-color:#eceef2;
+					}
+				}
+			}
+		}
+		.img-box{
+			display: flex;
+			flex-wrap: wrap;
+			margin: 30px 0;
+			.img-item{
+				position: relative;
+				img{
+					width:180px;
+					height:180px;
+					display: inline-block;
+					margin: 3px;
+				}
+				.dot{
+					position: absolute;
+					width:30px;
+					height:30px;
+					background:rgba(255,255,255,1);
+					top:10px;
+					right: 10px;
+					border-radius: 50%;
+					i{
+						position: absolute;
+						width:30px;
+						height:30px;
+						top:-1px;
+						right:1px;
+					}
+				}
+				.checked{
+				}
+			}
+
+		}
+	}
+</style>

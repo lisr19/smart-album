@@ -1,2 +1,2 @@
-# smart-album
+# smart-ablum
 智慧相册
