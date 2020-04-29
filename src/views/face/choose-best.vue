@@ -213,6 +213,11 @@
 	.page{
 		height: 100%;
 		.head-bar{
+			/*background-color: #ffffff;*/
+			/*z-index: 99;*/
+			/*box-sizing: border-box;*/
+			/*position: fixed;*/
+			/*width: 100%;*/
 			line-height: 120px;
 			height: 120px;
 			font-size:32px;
@@ -220,6 +225,7 @@
 			font-weight:500;
 			padding: 0 38px;
 			display: flex;
+			top: 0;
 			align-items: center;
 			justify-content: space-between;
 			img{
@@ -234,6 +240,11 @@
 					font-size:32px;
 				}
 			}
+		}
+		.main{
+			/*height: 850px;*/
+			/*overflow: auto;*/
+			/*padding: 120px 0 ;*/
 		}
 		.img-box{
 			display: flex;

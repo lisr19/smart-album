@@ -18,6 +18,7 @@ const routes = [
 	{
 		path: '/face',
 		name: '人脸',
+		// meta: { keepAlive: true },
 		component: () => import('@/views/face/index.vue')
 	},
 	{
@@ -71,6 +72,12 @@ const routes = [
 		name: '评分',
 		meta: { keepAlive: true },
 		component: () => import('@/views/choiceImg/score.vue')
+	},
+	{
+		path: '/dtz-result',
+		name: '大头照',
+		// meta: { keepAlive: true },
+		component: () => import('@/views/face/dtz-result.vue')
 	},
 	{
 		path: '/full-img',

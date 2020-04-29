@@ -15,7 +15,7 @@
 				<div id="chart1" ref="myChart" style="width:100%;height:336px"></div>
 				<div class="ad-tip">
 					<div>
-						{{(compareData.similarity_degree*100).toFixed(1)}}<span>%</span>
+						{{(compareData.similarity_degree).toFixed(1)}}<span>%</span>
 					</div>
 					<p>相似度</p>
 				</div>

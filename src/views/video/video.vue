@@ -194,6 +194,11 @@
 	.page{
 		height: 100%;
 		.head-bar{
+			z-index: 99;
+			background-color: #ffffff;
+			position: fixed;
+			width: 100%;
+			box-sizing: border-box;
 			line-height: 120px;
 			height: 120px;
 			font-size:32px;
@@ -216,42 +221,46 @@
 				}
 			}
 		}
-		.img-box{
-			display: flex;
-			flex-wrap: wrap;
-			.img-item{
-				position: relative;
-				width:180px;
-				height:180px;
-				margin: 5px 3px;
-				img{
+		.main{
+			padding: 120px 0 350px;
+			.img-box{
+				display: flex;
+				flex-wrap: wrap;
+				.img-item{
+					position: relative;
 					width:180px;
 					height:180px;
-					display:block;
-				}
-				.dot{
-					position: absolute;
-					width:30px;
-					height:30px;
-					background:rgba(255,255,255,1);
-					top:10px;
-					right: 10px;
-					border-radius: 50%;
-					i{
+					margin: 5px 3px;
+					img{
+						width:180px;
+						height:180px;
+						display:block;
+					}
+					.dot{
 						position: absolute;
 						width:30px;
 						height:30px;
-						top:-2px;
-						right:0px;
-						font-size: 38px;
+						background:rgba(255,255,255,1);
+						top:10px;
+						right: 10px;
 						border-radius: 50%;
+						i{
+							position: absolute;
+							width:30px;
+							height:30px;
+							top:-2px;
+							right:0px;
+							font-size: 38px;
+							border-radius: 50%;
+						}
 					}
-				}
-				.checked{
-					background: none;
+					.checked{
+						background: none;
+					}
 				}
 			}
 		}
+
 		.foot{
 			background:rgba(250,250,250,1);
 			bottom: 0;

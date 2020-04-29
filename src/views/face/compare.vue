@@ -179,6 +179,8 @@
 	.page{
 		height: 100%;
 		.head-bar{
+			z-index: 99;
+			background-color: #ffffff;
 			line-height: 120px;
 			height: 120px;
 			font-size:32px;
@@ -188,6 +190,9 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
+			position: fixed;
+			width: 100%;
+			box-sizing: border-box;
 			img{
 				height:60px;
 				z-index: 2;
@@ -201,53 +206,57 @@
 				}
 			}
 		}
-		.img-box{
-			display: flex;
-			flex-wrap: wrap;
-			.img-item{
-				position: relative;
-				width:180px;
-				height:180px;
-				margin: 5px 3px;
-				img{
+		.main{
+			padding-top: 120px;
+			.img-box{
+				display: flex;
+				flex-wrap: wrap;
+				.img-item{
+					position: relative;
 					width:180px;
 					height:180px;
-					display:block;
-				}
-				.score{
-					height:42px;
-					width:184px;
-					background:linear-gradient(180deg,rgba(166,199,255,1) 0%,rgba(45,122,255,1) 100%);
-					border-radius:8px 8px 0px 0px;
-					opacity:0.5;
-					text-align: center;
-					color:rgba(255,255,255,1);
-					position: absolute;
-					bottom: 0;
-					z-index: 9;
-				}
-				.dot{
-					position: absolute;
-					width:30px;
-					height:30px;
-					background:rgba(255,255,255,1);
-					top:10px;
-					right: 10px;
-					border-radius: 50%;
-					i{
+					margin: 5px 3px;
+					img{
+						width:180px;
+						height:180px;
+						display:block;
+					}
+					.score{
+						height:42px;
+						width:184px;
+						background:linear-gradient(180deg,rgba(166,199,255,1) 0%,rgba(45,122,255,1) 100%);
+						border-radius:8px 8px 0px 0px;
+						opacity:0.5;
+						text-align: center;
+						color:rgba(255,255,255,1);
+						position: absolute;
+						bottom: 0;
+						z-index: 9;
+					}
+					.dot{
 						position: absolute;
 						width:30px;
 						height:30px;
-						top:-3px;
-						right:1px;
-						font-size: 36px;
+						background:rgba(255,255,255,1);
+						top:10px;
+						right: 10px;
+						border-radius: 50%;
+						i{
+							position: absolute;
+							width:30px;
+							height:30px;
+							top:-3px;
+							right:1px;
+							font-size: 36px;
+						}
 					}
-				}
-				.checked{
-					background:none;
+					.checked{
+						background:none;
+					}
 				}
 			}
 		}
+
 		.foot{
 			height:198px;
 			background:rgba(250,250,250,1);

@@ -44,8 +44,8 @@
 				<span style="color: #2D7AFF">滤镜效果</span>
 				<img slot="icon" src="@/assets/img/icon5.png">
 			</van-tabbar-item>
-			<van-tabbar-item @click="tabNav('特写')">
-				<span style="color: #2D7AFF">镜头特写</span>
+			<van-tabbar-item @click="tabNav('大头照')">
+				<span style="color: #2D7AFF">人脸特写</span>
 				<img slot="icon" src="@/assets/img/icon6.png">
 			</van-tabbar-item>
 			<van-tabbar-item @click="tabNav('聚类')">
@@ -90,6 +90,8 @@
 					notNextTick: true,
 					slidesPerView: 'auto',
 					spaceBetween: 10,
+					observer:true,
+					observeParents:false
 				},
 			}
 		},
@@ -98,15 +100,16 @@
 			this.cuurName = this.imgList[0].name
 			this.access_token = localStorage.getItem('access_token')
 		},
-		mounted(){
+		activated(){
 		},
 		methods:{
 			tabNav(type){
 				console.log(type);
 				if(type==='过滤'){
 					this.$router.push({name:'过滤',query:{cuurImg:this.cuurImg,cuurName:this.cuurName}})
-				}else if(type==='特写'){
-					this.openClus()
+				}else if(type==='大头照'){
+					this.openDTZ()
+					// this.openClus()
 				}else if(type==='聚类'){
 					this.$router.push({name:'选择',query:{from:'聚类'}})
 				}else {
@@ -159,6 +162,44 @@
 				console.log(this.imgList);
 				this.cuurImg = this.imgList[0].picUrl
 				this.cuurName = this.imgList[0].name
+			},
+			//大头照
+			openDTZ(){
+				this.isLoading = true
+				setTimeout(()=>{
+					let params ={
+						access_token:localStorage.getItem('access_token'),
+						face_img:{
+							[this.cuurName]: '/home/cyfee/my_project/web/smart_albums/static/photos/'+this.cuurImg.split("photos/")[1],
+							// [this.cuurName]: '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuycJB/'+this.cuurImg.split("xMiIsQy01MuycJB/")[1],
+						}
+					}
+					axios.post('http://wanfanji.3322.org:13478/people_album/detector',params).then((res)=> {
+						if (res.status == "200") {
+							if(res.data.status.code===0){
+								let data = res.data.data
+								this.face_list =data.face_list
+								setTimeout(()=>{
+									this.isLoading = false
+									this.$router.push({name:'大头照',params:{face_list:this.face_list}})
+								},1500)
+							}else if(res.data.status.code===-1){
+								this.isLoading = false
+								this.$toast(res.data.data.msg)
+							}else{
+								this.isLoading = false
+								this.$toast(res.data.status.msg)
+							}
+						} else {
+						}
+					}).catch( (res) =>{
+						setTimeout(()=>{
+							this.isLoading = false
+							this.$toast('接口失败')
+						},5000)
+						console.log(res);
+					})
+				},5000)
 			},
 			//特写
 			openClus(){
@@ -254,7 +295,8 @@
 		}
 		.main{
 			.big-img{
-				width:674px;
+				max-width:674px;
+				/*width:674px;*/
 				height:682px;
 				background: #d3adf7;
 				display: block;

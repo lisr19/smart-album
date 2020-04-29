@@ -8,7 +8,12 @@
 		</div>
 		<div class="main">
 			<img class="big-img" :src="cuurImg" alt="">
-			<p><img src="@/assets/img/icon22.png" alt=""><span  @click="recoMmend">智能推荐</span></p>
+			<div style="display: flex;align-items: center;justify-content: flex-end;">
+				<span class="tip" style="margin-right: 10px"><img src="@/assets/img/icon22.png" alt=""><em  @click="openClus">镜头特写</em></span>
+				<span class="tip"><img src="@/assets/img/icon22.png" alt=""><em  @click="recoMmend">智能推荐</em></span>
+
+			</div>
+
 		</div>
 		<div class="wrap-box">
 			<swiper class="items" :options="swiperOption" ref="mySwiper">
@@ -193,6 +198,40 @@
 		mounted(){
 		},
 		methods:{
+			//特写
+			openClus(){
+				this.isLoading = true
+				setTimeout(()=>{
+					let params ={
+						access_token:localStorage.getItem('access_token'),
+						closeup_img:{
+							[this.cuurName]: '/home/cyfee/my_project/web/smart_albums/static/photos/'+this.cuurImg.split("photos/")[1],
+							// [this.cuurName]: '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuycJB/'+this.cuurImg.split("xMiIsQy01MuycJB/")[1],
+						}
+					}
+					axios.post('http://wanfanji.3322.org:13478/fancyTime/image_closeUp',params).then((res)=> {
+						if (res.status == "200") {
+							if(res.data.status.code===0){
+								let data = res.data.data
+								this.img_closeuped =data.img_closeuped
+								setTimeout(()=>{
+									this.isLoading = false
+									this.$router.push({name:'保存',query:{cuurImg:this.img_closeuped,cuurName:this.cuurName}})
+								},1500)
+							}else{
+								this.$toast(res.data.status.msg)
+							}
+						} else {
+						}
+					}).catch( (res) =>{
+						setTimeout(()=>{
+							this.isLoading = false
+							this.$toast('接口失败')
+						},5000)
+						console.log(res);
+					})
+				},5000)
+			},
 			comFn(){
 				this.isLoading = true
 				let params ={
@@ -309,19 +348,19 @@
 				overflow: hidden;
 				border-radius:10px;
 			}
-			p{
-				font-size:30px;
+			.tip{
+				font-size:32px;
 				font-family:PingFangSC-Medium,PingFang SC;
 				font-weight:500;
 				color:rgba(255,255,255,1);
-				line-height:40px;
+				line-height:42px;
 				text-align: right;
 				padding-right: 34px;
 				display: flex;
 				align-items: center;
 				justify-content: flex-end;
 				img{
-					height: 38px;
+					height: 40px;
 					margin-right: 15px;
 				}
 			}

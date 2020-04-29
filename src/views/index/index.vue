@@ -23,8 +23,8 @@
 				</div>
 			</template>
 			<template v-else>
-				<div class="img-box">
-					<div class="img-item" v-for="(item,index) in imgList">
+				<div class="img-box" >
+					<div class="img-item" v-for="(item,index) in imgList" @click="openItem(item,index)">
 						<img :src="item.picUrl" alt="" >
 					</div>
 				</div>
@@ -54,6 +54,11 @@
 				>
 			</van-tabbar-item>
 		</van-tabbar>
+		<van-overlay :show="showImg" @click="showImg = false" style="z-index: 9999">
+			<div class="show-img-box">
+				<img :src="cuurImg" alt="" style="height: 100%;width: 100%">
+			</div>
+		</van-overlay>
 <!--		<van-popup v-model="showTip" style="border-radius:8px;">-->
 <!--			<div class="show-box">-->
 <!--				<p>-->
@@ -72,21 +77,64 @@
 	export default {
 		data(){
 			return{
+				showImg:false,
 				imgList:[],
 				img_list:
 					{
-						'test_photo.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01Ml17l3/xMiIsQy01Ml17l31587951962.8595304t_photo.jpg',
-						'G0827-NT-009.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuycJB/xMiIsQy01MuycJB1584068052.6162713-NT-009.jpg',
-						'1596353.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuycJB/xMiIsQy01MuycJB1584068052.62103221596353.jpg',
-						'981jjdn.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuycJB/xMiIsQy01MuycJB1584068052.6261158981jjdn.jpg',
-						'192000_2.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuycJB/xMiIsQy01MuycJB1584068052.632459492000_2.jpg',
-						'2409umb.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuycJB/xMiIsQy01MuycJB1584068052.64124352409umb.jpg',
-						'01e70000sh.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuycJB/xMiIsQy01MuycJB1584068052.64755170000sh.jpg',
-						'G0fdhr329.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuycJB/xMiIsQy01MuycJB1584068052.7108665fdhr329.jpg',
-						'mjjq-photos-900.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuycJB/xMiIsQy01MuycJB1584068052.719134tos-900.jpg',
-						'1928074_2.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuycJB/xMiIsQy01MuycJB1584068052.723315228074_2.jpg',
-						'13-1P614162A8.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuycJB/xMiIsQy01MuycJB1584068052.72973614162A8.jpg',
-						'20172072085.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuycJB/xMiIsQy01MuycJB1584068052.735292072085.jpg'
+						'test_image_63.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131171.847759mage_63.jpg',
+						'test_image_70.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131171.8519936mage_70.jpg',
+						'test_image_59.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131171.8565636mage_59.jpg',
+						'test_image_48.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131171.8609095mage_48.jpg',
+						'test_image_49.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131171.8651414mage_49.jpg',
+						'test_image_71.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131171.8689725mage_71.jpg',
+						'test_image_55.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131171.8727832mage_55.jpg',
+						'test_image_76.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131171.877088mage_76.jpg',
+						'test_image_31.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131171.8804927mage_31.jpg',
+						'test_image_34.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131171.8859818mage_34.jpg',
+						'test_image_61.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131171.890363mage_61.jpg',
+						'test_image_56.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131171.8948193mage_56.jpg',
+						'test_image_26.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131171.8989704mage_26.jpg',
+						'test_image_3.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131171.9030192image_3.jpg',
+						'test_image_38.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131171.907025mage_38.jpg',
+						'test_image_60.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131171.9115734mage_60.jpg',
+						'test_image_66.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131171.9155607mage_66.jpg',
+						'test_image_58.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131171.933038mage_58.jpg',
+						'test_image_57.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131171.9380085mage_57.jpg',
+						'test_image_53.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131171.9411807mage_53.jpg',
+						'test_image_74.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131171.9465215mage_74.jpg',
+						'test_image_64.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131171.9506986mage_64.jpg',
+						'test_image_28.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131171.9540644mage_28.jpg',
+						'test_image_36.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131171.9587805mage_36.jpg',
+						'test_image_65.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131171.9629776mage_65.jpg',
+						'test_image_50.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131171.9679942mage_50.jpg',
+						'test_image_6.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131171.971901image_6.jpg',
+						'test_image_72.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131171.9758797mage_72.jpg',
+						'test_image_18.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131171.9803135mage_18.jpg',
+						'test_image_75.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131171.9849052mage_75.jpg',
+						'test_image_13.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131171.9892077mage_13.jpg',
+						'test_image_69.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131171.9949963mage_69.jpg',
+						'test_image_30.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131171.999377mage_30.jpg',
+						'test_image_12.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131172.0038006mage_12.jpg',
+						'test_image_51.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131172.0081406mage_51.jpg',
+						'test_image_62.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131172.0119867mage_62.jpg',
+						'test_image_47.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131172.015249mage_47.jpg',
+						'test_image_1.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131172.0191739image_1.jpg',
+						'test_image_24.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131172.0233846mage_24.jpg',
+						'test_image_54.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131172.0273058mage_54.jpg',
+						'test_image_37.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131172.0315857mage_37.jpg',
+						'test_image_19.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131172.035329mage_19.jpg',
+						'test_image_35.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131172.0415084mage_35.jpg',
+						'test_image_39.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131172.0451345mage_39.jpg',
+						'test_image_29.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131172.0494087mage_29.jpg',
+						'test_image_68.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131172.0534725mage_68.jpg',
+						'test_image_67.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131172.0586946mage_67.jpg',
+						'test_image_73.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131172.0628016mage_73.jpg',
+						'test_image_33.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131172.0674224mage_33.jpg',
+						'test_image_4.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131172.0715039image_4.jpg',
+						'test_image_52.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131172.0764544mage_52.jpg',
+						'test_image_27.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131172.080212mage_27.jpg',
+						'test_image_32.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131172.0836833mage_32.jpg',
+						'test_image_25.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588131172.0878468mage_25.jpg'
 					},
 				fileList: [],
 				access_token:'',
@@ -124,6 +172,10 @@
 				'setImgList',
 				'setCopyImgList'
 			]),
+			openItem(item,index){
+				this.cuurImg = item.picUrl
+				this.showImg  =true
+			},
 			login(){
 				axios.post('http://wanfanji.3322.org:13478/login',{
 					access_token:'',
@@ -212,6 +264,11 @@
 	.page{
 		height: 100%;
 		.head-bar{
+			z-index: 99;
+			background-color: #ffffff;
+			position: fixed;
+			width: 100%;
+			box-sizing: border-box;
 			line-height: 150px;
 			height: 150px;
 			font-size:32px;
@@ -254,8 +311,9 @@
 			}
 		}
 		.main{
+			padding-top:150px ;
 			.big-img{
-				width:674px;
+				max-width:674px;
 				height:682px;
 				background: #d3adf7;
 				display: block;
@@ -308,6 +366,7 @@
 		.img-box{
 			display: flex;
 			flex-wrap: wrap;
+			padding-bottom: 120px;
 			img{
 				width:180px;
 				height:180px;
@@ -334,6 +393,17 @@
 			}
 			p:first-child{
 				border-bottom: solid #D8D8D8 1px;
+			}
+		}
+		.show-img-box{
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			z-index: 999;
+			img{
+				width: 100%;
+				height: auto;
 			}
 		}
 	}

@@ -28,6 +28,16 @@
 					</div>
 				</div>
 			</div>
+			<div class="card" v-if="imgList3.length>0">
+				<p class="title">
+					<input type="text" v-model="classThree">
+				</p>
+				<div class="img-box">
+					<div class="img-item" v-for="(item,index) in imgList3"  @click="choiceImg(item,index)" >
+						<img :src="item.picUrl" alt="" >
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -37,10 +47,12 @@
 			return{
 				classOne:'分组1',
 				classTwo:'分组2',
+				classThree:'分组3',
 				cuurImg:null,
 				isAll: false,
 				imgList:[],
 				imgList2:[],
+				imgList3:[],
 			}
 		},
 		created(){
@@ -49,6 +61,7 @@
 			let array = Object.keys(this.class_result).map(key=> this.class_result[key])
 			this.imgList = array[0]
 			this.imgList2 = array[1]
+			this.imgList3 = array[2]?array[2]:[]
 
 		},
 		mounted(){
@@ -58,16 +71,19 @@
 			initImg(){
 				let arr1 = []
 				let arr2 = []
+				let arr3 = []
 				for(let i in this.imgList){
 					arr1.push({picUrl:this.imgList[i]})
 				}
 				for(let i in this.imgList2){
 					arr2.push({picUrl:this.imgList2[i]})
 				}
-				console.log(arr1);
-				console.log(arr2);
+				for(let i in this.imgList3){
+					arr3.push({picUrl:this.imgList3[i]})
+				}
 				this.imgList=arr1
 				this.imgList2=arr2
+				this.imgList3=arr3
 			},
 			openDetail(){
 				this.$router.push({name:'择优结果'})
@@ -106,6 +122,11 @@
 	.page{
 		height: 100%;
 		.head-bar{
+			z-index: 99;
+			background-color: #ffffff;
+			position: fixed;
+			width: 100%;
+			box-sizing: border-box;
 			line-height: 120px;
 			height: 120px;
 			font-size:32px;
@@ -129,6 +150,7 @@
 			}
 		}
 		.main {
+			padding: 120px 0;
 			.card{
 				.title{
 					font-size:32px;
