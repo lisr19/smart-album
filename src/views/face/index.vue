@@ -14,7 +14,9 @@
 		</div>
 		<div class="main">
 			<template v-if="!isAllImg">
-				<img class="big-img" :src="cuurImg" alt="">
+				<div class="banner">
+					<img class="big-img" :src="cuurImg" alt="">
+				</div>
 				<div class="wrap-box">
 					<swiper class="items" :options="swiperOption" ref="mySwiper">
 						<!-- slides -->
@@ -27,8 +29,8 @@
 				</div>
 			</template>
 			<template v-else>
-				<div class="img-box">
-					<div class="img-item" v-for="(item,index) in imgList">
+				<div class="img-box" style="padding-bottom: 80px">
+					<div class="img-item" v-for="(item,index) in imgList"  @click="openItem(item,index)">
 						<img :src="item.picUrl" alt="" >
 					</div>
 				</div>
@@ -54,6 +56,11 @@
 			</van-tabbar-item>
 		</van-tabbar>
 		<loading v-if="isLoading"></loading>
+		<van-overlay :show="showImg" @click="showImg = false" >
+			<div class="show-img-box">
+				<img :src="cuurImg" alt="">
+			</div>
+		</van-overlay>
 	</div>
 </template>
 <script>
@@ -72,6 +79,7 @@
 		},
 		data(){
 			return{
+				showImg:false,
 				showTip:false,
 				fileList: [],
 				img_closeuped:'',
@@ -101,8 +109,20 @@
 			this.access_token = localStorage.getItem('access_token')
 		},
 		activated(){
+			if(!this.cuurImg){
+				this.cuurImg = this.imgList[0].picUrl
+				this.cuurName = this.imgList[0].name
+				this.currIndex =0
+			}
+
 		},
 		methods:{
+			openItem(item,index){
+				this.cuurImg = item.picUrl
+				this.cuurName = item.name
+				this.currIndex =index
+				this.showImg  =true
+			},
 			tabNav(type){
 				console.log(type);
 				if(type==='过滤'){
@@ -252,6 +272,11 @@
 	.page{
 		height: 100%;
 		.head-bar{
+			z-index: 99;
+			background-color: #ffffff;
+			position: fixed;
+			width: 100%;
+			box-sizing: border-box;
 			line-height: 150px;
 			height: 150px;
 			font-size:32px;
@@ -294,15 +319,24 @@
 			}
 		}
 		.main{
-			.big-img{
-				max-width:674px;
-				/*width:674px;*/
+			padding:150px 0 0;
+			.banner{
+				width:674px;
 				height:682px;
-				background: #d3adf7;
-				display: block;
-				margin: 30px auto 90px;
-				text-align: center;
+				background-color: #f8f8f8;
+				margin: 0 auto 120px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
 				border-radius: 10px;
+				.big-img{
+					max-width:674px;
+					max-height:682px;
+					background: #d3adf7;
+					display: block;
+					text-align: center;
+					border-radius: 10px;
+				}
 			}
 			.wrap-box{
 				overflow: hidden;
@@ -353,6 +387,17 @@
 				height:180px;
 				display: inline-block;
 				margin: 3px;
+			}
+		}
+		.show-img-box{
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			z-index: 999;
+			img{
+				width: 100%;
+				height: auto;
 			}
 		}
 	}

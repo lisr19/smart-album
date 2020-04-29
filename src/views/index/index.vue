@@ -11,7 +11,10 @@
 		</div>
 		<div class="main">
 			<template v-if="isAllImg">
-				<img class="big-img" :src="cuurImg" alt="">
+				<div class="banner">
+					<img class="big-img" :src="cuurImg" alt="">
+				</div>
+
 				<div class="wrap-box">
 					<swiper class="items" :options="swiperOption" ref="mySwiper">
 						<!-- slides -->
@@ -54,9 +57,9 @@
 				>
 			</van-tabbar-item>
 		</van-tabbar>
-		<van-overlay :show="showImg" @click="showImg = false" style="z-index: 9999">
+		<van-overlay :show="showImg" @click="showImg = false" >
 			<div class="show-img-box">
-				<img :src="cuurImg" alt="" style="height: 100%;width: 100%">
+				<img :src="cuurImg" alt="">
 			</div>
 		</van-overlay>
 <!--		<van-popup v-model="showTip" style="border-radius:8px;">-->
@@ -258,7 +261,9 @@
 		/*position: relative;*/
 		height: 100px;
 	}
-
+	.van-overlay{
+		z-index: 999!important;
+	}
 </style>
 <style lang="less" scoped>
 	.page{
@@ -312,16 +317,6 @@
 		}
 		.main{
 			padding-top:150px ;
-			.big-img{
-				max-width:674px;
-				height:682px;
-				background: #d3adf7;
-				display: block;
-				margin: 30px auto 90px;
-				text-align: center;
-				border-radius: 10px;
-				overflow: hidden;
-			}
 			.wrap-box{
 				overflow: hidden;
 				position: relative;
@@ -361,6 +356,24 @@
 				-webkit-transform: scale(0.5,0.5);
 				transform: scale(0.5,0.5);
 				-webkit-transform-origin: top left;
+			}
+		}
+		.banner{
+			width:674px;
+			height:682px;
+			background-color: #f8f8f8;
+			margin: 0 auto 120px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-radius: 10px;
+			.big-img{
+				max-width:674px;
+				max-height:682px;
+				background: #d3adf7;
+				display: block;
+				text-align: center;
+				border-radius: 10px;
 			}
 		}
 		.img-box{

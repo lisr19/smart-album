@@ -8,11 +8,33 @@
 			</div>
 		</div>
 		<div class="main">
-			<div class="img-box">
-				<div class="img-item" v-for="(item,index) in imgList"  @click="choiceImg(item,index)" >
-					<img :src="item.picUrl" alt="" >
+			<template v-if="imgList.length===1">
+				<div style="display: flex;align-items: center;justify-content: center">
+					<img class="big-img" :src="imgList[0].picUrl" alt="" >
 				</div>
-			</div>
+
+			</template>
+			<template v-else-if="imgList.length===2">
+				<div class="img-box2">
+					<div class="img-item" v-for="(item,index) in imgList"  @click="choiceImg(item,index)" >
+						<img :src="item.picUrl" alt="" >
+					</div>
+				</div>
+			</template>
+			<template v-else-if="imgList.length>4">
+				<div class="img-box">
+					<div class="img-item" v-for="(item,index) in imgList"  @click="choiceImg(item,index)" >
+						<img :src="item.picUrl" alt="" >
+					</div>
+				</div>
+			</template>
+			<template v-else>
+				<div class="img-box3">
+					<div class="img-item" v-for="(item,index) in imgList"  @click="choiceImg(item,index)" >
+						<img :src="item.picUrl" alt="" >
+					</div>
+				</div>
+			</template>
 		</div>
 	</div>
 </template>
@@ -74,6 +96,11 @@
 	.page{
 		height: 100%;
 		.head-bar{
+			background-color: #ffffff;
+			z-index: 99;
+			box-sizing: border-box;
+			position: fixed;
+			width: 100%;
 			line-height: 120px;
 			height: 120px;
 			font-size:32px;
@@ -96,7 +123,18 @@
 				}
 			}
 		}
+		.big-img{
+			max-width:674px;
+			height:682px;
+			background: #d3adf7;
+			display: block;
+			text-align: center;
+			border-radius: 10px;
+			overflow: hidden;
+			margin-top: 180px;
+		}
 		.main{
+			padding-top: 120px;
 			.tip{
 				font-size:26px;
 				font-family:PingFangSC-Regular,PingFang SC;
@@ -109,16 +147,49 @@
 			.img-box{
 				display: flex;
 				flex-wrap: wrap;
+				justify-content: center;
 				.img-item{
 					position: relative;
 					img{
-						width:180px;
-						height:180px;
+						width:220px;
+						height:220px;
 						display: inline-block;
-						margin:2px 3px;
+						margin:8px;
 					}
 				}
 
+			}
+			.img-box2{
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				justify-content: center;
+				margin-top: 20px;
+				.img-item{
+					position: relative;
+					img{
+						width:550px;
+						height:550px;
+						display: inline-block;
+						margin:5px;
+					}
+				}
+			}
+			.img-box3{
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				justify-content: center;
+				margin-top: 250px;
+				.img-item{
+					position: relative;
+					img{
+						width:330px;
+						height:330px;
+						display: inline-block;
+						margin:10px;
+					}
+				}
 			}
 		}
 

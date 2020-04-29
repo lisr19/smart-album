@@ -18,7 +18,7 @@ const routes = [
 	{
 		path: '/face',
 		name: '人脸',
-		// meta: { keepAlive: true },
+		meta: { keepAlive: true },
 		component: () => import('@/views/face/index.vue')
 	},
 	{
