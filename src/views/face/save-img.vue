@@ -73,8 +73,8 @@
 		}
 		.main{
 			.big-img{
-				width:674px;
-				height:682px;
+				max-width:674px;
+				max-height:682px;
 				background: #d3adf7;
 				display: block;
 				margin: 80px auto 0;

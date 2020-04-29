@@ -9,18 +9,45 @@
 		</div>
 		<div class="main">
 			<p class="tip">系统已根据评分为您选择最优质的图片</p>
-			<div class="img-box">
-				<div class="img-item" v-for="(item,index) in imgList"  @click="choiceImg(item,index)" >
-					<img :src="item.picUrl" alt="" >
+			<template v-if="imgList.length===1">
+				<div style="display: flex;align-items: center;justify-content: center">
+					<img class="big-img" :src="imgList[0].picUrl" alt="" @click="openItem(item,index)" >
 				</div>
-			</div>
+			</template>
+			<template v-else-if="imgList.length===2">
+				<div class="img-box2">
+					<div class="img-item" v-for="(item,index) in imgList"  @click="openItem(item,index)" >
+						<img :src="item.picUrl" alt="" >
+					</div>
+				</div>
+			</template>
+			<template v-else-if="imgList.length>4">
+				<div class="img-box">
+					<div class="img-item" v-for="(item,index) in imgList"  @click="openItem(item,index)" >
+						<img :src="item.picUrl" alt="" >
+					</div>
+				</div>
+			</template>
+			<template v-else>
+				<div class="img-box3">
+					<div class="img-item" v-for="(item,index) in imgList"  @click="openItem(item,index)" >
+						<img :src="item.picUrl" alt="" >
+					</div>
+				</div>
+			</template>
 		</div>
+		<van-overlay :show="showImg" @click="showImg = false" >
+			<div class="show-img-box">
+				<img :src="cuurImg" alt="">
+			</div>
+		</van-overlay>
 	</div>
 </template>
 <script>
 	export default {
 		data(){
 			return{
+				showImg:false,
 				cuurImg:null,
 				isAll: false,
 				imgList:[],
@@ -37,6 +64,10 @@
 		mounted(){
 		},
 		methods:{
+			openItem(item,index){
+				this.cuurImg = item.picUrl
+				this.showImg  =true
+			},
 			goIndex(){
 				this.$router.push({name:'首页'})
 			},
@@ -77,6 +108,11 @@
 	.page{
 		height: 100%;
 		.head-bar{
+			background-color: #ffffff;
+			z-index: 99;
+			box-sizing: border-box;
+			position: fixed;
+			width: 100%;
 			line-height: 120px;
 			height: 120px;
 			font-size:32px;
@@ -100,6 +136,7 @@
 			}
 		}
 		.main{
+			padding-top: 120px;
 			.tip{
 				font-size:26px;
 				font-family:PingFangSC-Regular,PingFang SC;
@@ -112,18 +149,71 @@
 			.img-box{
 				display: flex;
 				flex-wrap: wrap;
+				justify-content: center;
+				padding-top: 20px;
 				.img-item{
 					position: relative;
 					img{
-						width:180px;
-						height:180px;
+						width:220px;
+						height:220px;
 						display: inline-block;
-						margin:2px 3px;
+						margin:8px;
 					}
 				}
-
+			}
+			.img-box2{
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				justify-content: center;
+				margin-top: 20px;
+				.img-item{
+					position: relative;
+					img{
+						width:550px;
+						height:550px;
+						display: inline-block;
+						margin:5px;
+					}
+				}
+			}
+			.img-box3{
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				justify-content: center;
+				margin-top: 220px;
+				.img-item{
+					position: relative;
+					img{
+						width:330px;
+						height:330px;
+						display: inline-block;
+						margin:10px;
+					}
+				}
+			}
+			.big-img{
+				max-width:674px;
+				height:682px;
+				background: #d3adf7;
+				display: block;
+				text-align: center;
+				border-radius: 10px;
+				overflow: hidden;
+				margin-top: 180px;
 			}
 		}
-
+		.show-img-box{
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			z-index: 999;
+			img{
+				width: 100%;
+				height: auto;
+			}
+		}
 	}
 </style>

@@ -7,11 +7,12 @@
 			</div>
 		</div>
 		<div class="main">
-			<img class="big-img" :src="cuurImg" alt="">
+			<div class="banner">
+				<img class="big-img" :src="cuurImg" alt="">
+			</div>
 			<div style="display: flex;align-items: center;justify-content: flex-end;">
 				<span class="tip" style="margin-right: 10px"><img src="@/assets/img/icon22.png" alt=""><em  @click="openClus">镜头特写</em></span>
 				<span class="tip"><img src="@/assets/img/icon22.png" alt=""><em  @click="recoMmend">智能推荐</em></span>
-
 			</div>
 
 		</div>
@@ -338,15 +339,23 @@
 			}
 		}
 		.main{
-			.big-img{
+			padding:120px 0 0;
+			.banner{
 				width:674px;
 				height:682px;
-				background: #d3adf7;
-				display: block;
-				margin: 102px auto 50px;
-				text-align: center;
-				overflow: hidden;
-				border-radius:10px;
+				margin: 0 auto 40px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				border-radius: 10px;
+				.big-img{
+					max-width:674px;
+					max-height:682px;
+					background: #d3adf7;
+					display: block;
+					text-align: center;
+					border-radius: 10px;
+				}
 			}
 			.tip{
 				font-size:32px;

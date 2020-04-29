@@ -324,7 +324,7 @@
 				width:674px;
 				height:682px;
 				background-color: #f8f8f8;
-				margin: 0 auto 120px;
+				margin: 30px auto 90px;
 				display: flex;
 				align-items: center;
 				justify-content: center;
