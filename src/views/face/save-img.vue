@@ -5,13 +5,18 @@
 			<img src="@/assets/img/menu.png" alt="" >
 		</div>
 		<div class="main">
-			<img class="big-img" :src="cuurImg" controls></img>
+			<img class="big-img" :src="cuurImg" controls  @click="showImg  =true"></img>
 		</div>
 		<div class="foot">
 			<div class="btn" @click="openSucc">
 				<a :href="cuurImg"  download="图片">保存照片</a>
 			</div>
 		</div>
+		<van-overlay :show="showImg" @click="showImg = false" >
+			<div class="show-img-box">
+				<img :src="cuurImg" alt="">
+			</div>
+		</van-overlay>
 	</div>
 </template>
 <script>
@@ -20,17 +25,15 @@
 			return{
 				cuurImg:null,
 				cuurName:null,
-				showImg:null,
+				showImg:false,
 				showTip:false,
 				currIndex:0,
 			}
 		},
 		created(){
 			this.cuurImg = this.$route.query.cuurImg
-			// this.showImg = 'http://192.168.4.55:3478/'+this.cuurImg.split("smart_albums/")[1]
 			this.cuurName = this.$route.query.cuurName
 			console.log(this.cuurImg);
-			// console.log(this.showImg);
 		},
 		mounted(){
 		},
@@ -50,8 +53,11 @@
 	}
 </script>
 <style>
-
+	.van-overlay{
+		z-index: 99!important;
+	}
 </style>
+
 <style lang="less" scoped>
 	.page{
 		height: 100%;
@@ -137,6 +143,17 @@
 					text-decoration:none;
 				}
 			}
+		}
+	}
+	.show-img-box{
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 999;
+		img{
+			width: 100%;
+			height: auto;
 		}
 	}
 </style>

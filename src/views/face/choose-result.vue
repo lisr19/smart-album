@@ -182,7 +182,7 @@
 				flex-wrap: wrap;
 				align-items: center;
 				justify-content: center;
-				margin-top: 220px;
+				margin-top: 180px;
 				.img-item{
 					position: relative;
 					img{

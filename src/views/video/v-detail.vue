@@ -75,13 +75,12 @@
 			}
 		}
 		.main{
-
 			.big-img{
-
-				width:674px;
-				height:682px;
+				/*width:674px;*/
+				max-width:674px;
+				/*height:682px;*/
 				display: block;
-				margin: 80px auto 0;
+				margin: 30px auto 20px;
 				text-align: center;
 				background-color:rgba(0,0,0,0.8);
 				border-radius: 8px;
@@ -118,7 +117,6 @@
 			height:202px;
 			background:rgba(250,250,250,0.9);
 			width: 100%;
-			margin-top: 220px;
 			display: flex;
 			align-items: center;
 			justify-content: center;

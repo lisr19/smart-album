@@ -16,32 +16,38 @@
 			</template>
 			<template v-else-if="imgList.length===2">
 				<div class="img-box2">
-					<div class="img-item" v-for="(item,index) in imgList"  @click="choiceImg(item,index)" >
+					<div class="img-item" v-for="(item,index) in imgList"  @click="openItem(item,index)" >
 						<img :src="item.picUrl" alt="" >
 					</div>
 				</div>
 			</template>
 			<template v-else-if="imgList.length>4">
 				<div class="img-box">
-					<div class="img-item" v-for="(item,index) in imgList"  @click="choiceImg(item,index)" >
+					<div class="img-item" v-for="(item,index) in imgList"  @click="openItem(item,index)" >
 						<img :src="item.picUrl" alt="" >
 					</div>
 				</div>
 			</template>
 			<template v-else>
 				<div class="img-box3">
-					<div class="img-item" v-for="(item,index) in imgList"  @click="choiceImg(item,index)" >
+					<div class="img-item" v-for="(item,index) in imgList"  @click="openItem(item,index)" >
 						<img :src="item.picUrl" alt="" >
 					</div>
 				</div>
 			</template>
 		</div>
+<!--		<van-overlay :show="showImg" @click="showImg = false" >-->
+<!--			<div class="show-img-box">-->
+<!--				<img :src="cuurImg" alt="">-->
+<!--			</div>-->
+<!--		</van-overlay>-->
 	</div>
 </template>
 <script>
 	export default {
 		data(){
 			return{
+				showImg:false,
 				cuurImg:null,
 				isAll: false,
 				imgList:[],
@@ -58,6 +64,12 @@
 		mounted(){
 		},
 		methods:{
+			openItem(item,index){
+				this.cuurImg = item.picUrl
+				this.cuurName = item.name
+				this.currIndex =index
+				this.showImg  =true
+			},
 			goIndex(){
 				this.$router.push({name:'首页'})
 			},
@@ -124,14 +136,14 @@
 			}
 		}
 		.big-img{
-			max-width:674px;
-			height:682px;
+			width:462px;
+			height:462px;
 			background: #d3adf7;
 			display: block;
 			text-align: center;
 			border-radius: 10px;
 			overflow: hidden;
-			margin-top: 180px;
+			margin-top: 250px;
 		}
 		.main{
 			padding-top: 120px;
@@ -164,14 +176,15 @@
 				flex-wrap: wrap;
 				align-items: center;
 				justify-content: center;
-				margin-top: 20px;
+				margin-top: 150px;
 				.img-item{
 					position: relative;
 					img{
-						width:550px;
-						height:550px;
+						width:402px;
+						height:402px;
 						display: inline-block;
-						margin:5px;
+						margin:15px;
+						border-radius: 5px;
 					}
 				}
 			}
@@ -192,6 +205,16 @@
 				}
 			}
 		}
-
+		.show-img-box{
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			z-index: 999;
+			img{
+				width: 100%;
+				height: auto;
+			}
+		}
 	}
 </style>

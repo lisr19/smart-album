@@ -12,7 +12,7 @@
 					<input type="text" v-model="classOne">
 				</p>
 				<div class="img-box">
-					<div class="img-item" v-for="(item,index) in imgList"  >
+					<div class="img-item" v-for="(item,index) in imgList"   @click="openItem(item,index)">
 						<img :src="item.picUrl" alt="" >
 					</div>
 				</div>
@@ -23,7 +23,7 @@
 				</p>
 				<div v-if="imgList2.length==0" style="margin-top: 20px">暂无</div>
 				<div class="img-box">
-					<div class="img-item" v-for="(item,index) in imgList2"  @click="choiceImg(item,index)" >
+					<div class="img-item" v-for="(item,index) in imgList2"  @click="openItem(item,index)" >
 						<img :src="item.picUrl" alt="" >
 					</div>
 				</div>
@@ -33,12 +33,17 @@
 					<input type="text" v-model="classThree">
 				</p>
 				<div class="img-box">
-					<div class="img-item" v-for="(item,index) in imgList3"  @click="choiceImg(item,index)" >
+					<div class="img-item" v-for="(item,index) in imgList3"  @click="openItem(item,index)" >
 						<img :src="item.picUrl" alt="" >
 					</div>
 				</div>
 			</div>
 		</div>
+				<van-overlay :show="showImg" @click="showImg = false" >
+					<div class="show-img-box">
+						<img :src="cuurImg" alt="">
+					</div>
+				</van-overlay>
 	</div>
 </template>
 <script>
@@ -50,6 +55,7 @@
 				classThree:'分组3',
 				cuurImg:null,
 				isAll: false,
+				showImg: false,
 				imgList:[],
 				imgList2:[],
 				imgList3:[],
@@ -68,6 +74,12 @@
 			this.initImg()
 		},
 		methods:{
+			openItem(item,index){
+				this.cuurImg = item.picUrl
+				this.cuurName = item.name
+				this.currIndex =index
+				this.showImg  =true
+			},
 			initImg(){
 				let arr1 = []
 				let arr2 = []
@@ -115,8 +127,18 @@
 		}
 	}
 </script>
-<style>
-
+<style lang="less">
+	.show-img-box{
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 999;
+		img{
+			width: 100%;
+			height: auto;
+		}
+	}
 </style>
 <style lang="less" scoped>
 	.page{

@@ -120,6 +120,9 @@
 					flex-direction: column;
 					align-items: center;
 					justify-content: center;
+					/*width:346px;*/
+					/*height:432px;*/
+					/*background-color: #B3B3B3;*/
 					img{
 						width:346px;
 						height:432px;
