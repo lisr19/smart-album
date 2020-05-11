@@ -76,7 +76,7 @@
 			},
 		},
 		created(){
-			console.log(this.imgList);
+			// console.log(this.imgList);
 			this.reset()
 		},
 		mounted(){

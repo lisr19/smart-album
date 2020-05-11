@@ -20,7 +20,7 @@
 				<div class="wrap-box">
 					<swiper class="items" :options="swiperOption" ref="mySwiper">
 						<!-- slides -->
-						<swiper-slide class="item" v-for="(item,index) in imgList" :key="index">
+						<swiper-slide class="item" v-for="(item,index) in imgList" :key="index"  data-index="index" >
 							<img :class="{active:currIndex===index}"  :src="item.picUrl" alt=""  @click.stop="selctImg(item,index)">
 							<!--<p>{{item.name}}</p>-->
 						</swiper-slide>
@@ -76,6 +76,9 @@
 				imgList:state=>state.user.imgList,
 				copy_img_list:state=>state.user.copy_img_list,
 			}),
+			swiper() {
+				return this.$refs.mySwiper.swiper;
+			}
 		},
 		data(){
 			return{
@@ -98,9 +101,16 @@
 					notNextTick: true,
 					slidesPerView: 'auto',
 					spaceBetween: 10,
-					observer:true,
-					observeParents:false
-				},
+					observer: true,
+					observeParents: false,
+					on: {
+						//监听滑动切换事件，返回swiper对象
+						slideChange: () => {
+							let swiper = this.$refs.mySwiper.swiper;
+							console.log(swiper.activeIndex); //滑动打印当前索引
+						},
+					},
+				}
 			}
 		},
 		created(){
@@ -114,7 +124,7 @@
 				this.cuurName = this.imgList[0].name
 				this.currIndex =0
 			}
-
+			// this.swiper.slideTo(3, 1000, false); //手动跳到指定页
 		},
 		methods:{
 			openItem(item,index){
@@ -339,9 +349,8 @@
 				}
 			}
 			.wrap-box{
-				overflow: hidden;
+				/*overflow: hidden;*/
 				position: relative;
-				/*border-top: #B3B3B3 solid 0.5px;*/
 				.items{
 					height: 248px;
 					padding:44px 20px 44px;
