@@ -200,8 +200,8 @@
 					let params ={
 						access_token:localStorage.getItem('access_token'),
 						face_img:{
-							[this.cuurName]: '/home/cyfee/my_project/web/smart_albums/static/photos/'+this.cuurImg.split("photos/")[1],
-							// [this.cuurName]: '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuycJB/'+this.cuurImg.split("xMiIsQy01MuycJB/")[1],
+							[this.cuurName]: '/smart_albums/static/photos/'+this.cuurImg.split("photos/")[1],
+							// [this.cuurName]: '/smart_albums/static/photos/xMiIsQy01MuycJB/'+this.cuurImg.split("xMiIsQy01MuycJB/")[1],
 						}
 					}
 					axios.post('http://wanfanji.3322.org:13478/people_album/detector',params).then((res)=> {
@@ -238,8 +238,8 @@
 					let params ={
 						access_token:localStorage.getItem('access_token'),
 						closeup_img:{
-							[this.cuurName]: '/home/cyfee/my_project/web/smart_albums/static/photos/'+this.cuurImg.split("photos/")[1],
-							// [this.cuurName]: '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuycJB/'+this.cuurImg.split("xMiIsQy01MuycJB/")[1],
+							[this.cuurName]: '/smart_albums/static/photos/'+this.cuurImg.split("photos/")[1],
+							// [this.cuurName]: '/smart_albums/static/photos/xMiIsQy01MuycJB/'+this.cuurImg.split("xMiIsQy01MuycJB/")[1],
 						}
 					}
 					axios.post('http://wanfanji.3322.org:13478/fancyTime/image_closeUp',params).then((res)=> {

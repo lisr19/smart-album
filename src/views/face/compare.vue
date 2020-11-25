@@ -102,8 +102,8 @@
 				this.human_list = {}
 				this.selItemList.forEach((i)=>{
 					let name =i.name
-					// this.human_list[name] =  '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuycJB/'+i.picUrl.split("xMiIsQy01MuycJB/")[1]
-					this.human_list[name] =  '/home/cyfee/my_project/web/smart_albums/static/photos/'+i.picUrl.split("photos/")[1]
+					// this.human_list[name] =  '/smart_albums/static/photos/xMiIsQy01MuycJB/'+i.picUrl.split("xMiIsQy01MuycJB/")[1]
+					this.human_list[name] =  '/smart_albums/static/photos/'+i.picUrl.split("photos/")[1]
 				})
 				let params ={
 					access_token:localStorage.getItem('access_token'),
