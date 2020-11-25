@@ -5,14 +5,15 @@ module.exports = {
 	// devServer: {
 	// 	proxy: { //配置代理，解决跨域请求后台数据的问题
 	// 		'/api': {
-	// 			// target: 'http://172.18.176.211:80', //后台接口
-	// 			target: 'http://192.168.4.55:3478', //后台接口
+	// 			target: 'http://120.24.0.130:11002/', //后台接口
+	// 			// target: 'http://192.168.4.55:3478', //后台接口
 	// 			ws: true, //是否跨域
 	// 			changeOrigin: true,
 	// 			pathRewrite: {
-	// 				// '^/api':'/'
+	// 				'^/api':'/'
 	// 			}
 	// 		}
 	// 	}
 	// }
+
 }

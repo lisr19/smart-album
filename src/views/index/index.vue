@@ -80,60 +80,33 @@
 	export default {
 		data(){
 			return{
+				inforList:[
+						{"id":8174,"start_time":1600058375000,"end_time":1600062598000,"action_type":"WALK","credential_id":null,"daylight_saving_time":0,"awake":0,"fall_asleep":0,"restless":0,"timezone":8,"total_calories":76610,"total_distance":1525,"total_duration":1110,"total_steps":2228,"value_max":0,"value_min":0,"info_1":2228,"info_2":0,"info_3":null,"info_4":null,"uid":37,"create_time":"2020-09-14 17:06:50"},{"id":8155,"start_time":1600055076000,"end_time":1600055107000,"action_type":"WALK","credential_id":null,"daylight_saving_time":0,"awake":0,"fall_asleep":0,"restless":0,"timezone":8,"total_calories":911,"total_distance":17.4531,"total_duration":11,"total_steps":28,"value_max":0,"value_min":0,"info_1":28,"info_2":0,"info_3":null,"info_4":null,"uid":37,"create_time":"2020-09-14 15:48:20"},
+					{"id":8156,"start_time":1600048951000,"end_time":1600049127000,"action_type":"WALK","credential_id":null,"daylight_saving_time":0,"awake":0,"fall_asleep":0,"restless":0,"timezone":8,"total_calories":6775,"total_distance":131.602,"total_duration":112,"total_steps":199,"value_max":0,"value_min":0,"info_1":199,"info_2":0,"info_3":null,"info_4":null,"uid":37,"create_time":"2020-09-14 15:48:20"},{"id":8157,"start_time":1600045181000,"end_time":1600045486000,"action_type":"WALK","credential_id":null,"daylight_saving_time":0,"awake":0,"fall_asleep":0,"restless":0,"timezone":8,"total_calories":17732,"total_distance":369.203,"total_duration":188,"total_steps":430,"value_max":0,"value_min":0,"info_1":374,"info_2":56,"info_3":null,"info_4":null,"uid":37,"create_time":"2020-09-14 15:48:20"},{"id":8158,"start_time":1600043980000,"end_time":1600043985000,"action_type":"WALK","credential_id":null,"daylight_saving_time":0,"awake":0,"fall_asleep":0,"restless":0,"timezone":8,"total_calories":395,"total_distance":6.60156,"total_duration":5,"total_steps":16,"value_max":0,"value_min":0,"info_1":16,"info_2":0,"info_3":null,"info_4":null,"uid":37,"create_time":"2020-09-14 15:48:20"},{"id":8159,"start_time":1600040156000,"end_time":1600042764000,"action_type":"WALK","credential_id":null,"daylight_saving_time":0,"awake":0,"fall_asleep":0,"restless":0,"timezone":8,"total_calories":34346,"total_distance":924.039,"total_duration":391,"total_steps":1046,"value_max":0,"value_min":0,"info_1":1036,"info_2":10,"info_3":null,"info_4":null,"uid":37,"create_time":"2020-09-14 15:48:20"},{"id":8160,"start_time":1600014789000,"end_time":1600014793000,"action_type":"WALK","credential_id":null,"daylight_saving_time":0,"awake":0,"fall_asleep":0,"restless":0,"timezone":8,"total_calories":314,"total_distance":5.67969,"total_duration":4,"total_steps":10,"value_max":0,"value_min":0,"info_1":10,"info_2":0,"info_3":null,"info_4":null,"uid":37,"create_time":"2020-09-14 15:48:20"},{"id":8161,"start_time":1600002656000,"end_time":1600003694000,"action_type":"WALK","credential_id":null,"daylight_saving_time":0,"awake":0,"fall_asleep":0,"restless":0,"timezone":8,"total_calories":25808,"total_distance":498.562,"total_duration":440,"total_steps":767,"value_max":0,"value_min":0,"info_1":767,"info_2":0,"info_3":null,"info_4":null,"uid":37,"create_time":"2020-09-14 15:48:20"},{"id":8162,"start_time":1599999434000,"end_time":1599999721000,"action_type":"WALK","credential_id":null,"daylight_saving_time":0,"awake":0,"fall_asleep":0,"restless":0,"timezone":8,"total_calories":517,"total_distance":9.32812,"total_duration":6,"total_steps":17,"value_max":0,"value_min":0,"info_1":17,"info_2":0,"info_3":null,"info_4":null,"uid":37,"create_time":"2020-09-14 15:48:20"},{"id":8163,"start_time":1599996288000,"end_time":1599997414000,"action_type":"WALK","credential_id":null,"daylight_saving_time":0,"awake":0,"fall_asleep":0,"restless":0,"timezone":8,"total_calories":5518,"total_distance":104.359,"total_duration":61,"total_steps":147,"value_max":0,"value_min":0,"info_1":116,"info_2":31,"info_3":null,"info_4":null,"uid":37,"create_time":"2020-09-14 15:48:20"},{"id":8164,"start_time":1599995341000,"end_time":1599995341001,"action_type":"WALK","credential_id":null,"daylight_saving_time":0,"awake":0,"fall_asleep":0,"restless":0,"timezone":8,"total_calories":251,"total_distance":4.54688,"total_duration":0,"total_steps":8,"value_max":0,"value_min":0,"info_1":8,"info_2":0,"info_3":null,"info_4":null,"uid":37,"create_time":"2020-09-14 15:48:20"},{"id":8165,"start_time":1599991506000,"end_time":1599994383000,"action_type":"WALK","credential_id":null,"daylight_saving_time":0,"awake":0,"fall_asleep":0,"restless":0,"timezone":8,"total_calories":20978,"total_distance":426.086,"total_duration":239,"total_steps":560,"value_max":0,"value_min":0,"info_1":492,"info_2":68,"info_3":null,"info_4":null,"uid":37,"create_time":"2020-09-14 15:48:20"},{"id":8166,"start_time":1599987889000,"end_time":1599988524000,"action_type":"WALK","credential_id":null,"daylight_saving_time":0,"awake":0,"fall_asleep":0,"restless":0,"timezone":8,"total_calories":3192,"total_distance":60.875,"total_duration":42,"total_steps":96,"value_max":0,"value_min":0,"info_1":96,"info_2":0,"info_3":null,"info_4":null,"uid":37,"create_time":"2020-09-14 15:48:20"},{"id":8167,"start_time":1599986883000,"end_time":1599987178000,"action_type":"WALK","credential_id":null,"daylight_saving_time":0,"awake":0,"fall_asleep":0,"restless":0,"timezone":8,"total_calories":2992,"total_distance":70.8984,"total_duration":34,"total_steps":87,"value_max":0,"value_min":0,"info_1":87,"info_2":0,"info_3":null,"info_4":null,"uid":37,"create_time":"2020-09-14 15:48:20"},{"id":8168,"start_time":1599977574000,"end_time":1599978485001,"action_type":"WALK","credential_id":null,"daylight_saving_time":0,"awake":0,"fall_asleep":0,"restless":0,"timezone":8,"total_calories":2488,"total_distance":47.7266,"total_duration":19,"total_steps":78,"value_max":0,"value_min":0,"info_1":78,"info_2":0,"info_3":null,"info_4":null,"uid":37,"create_time":"2020-09-14 15:48:20"},{"id":8169,"start_time":1599976271000,"end_time":1599976292000,"action_type":"WALK","credential_id":null,"daylight_saving_time":0,"awake":0,"fall_asleep":0,"restless":0,"timezone":8,"total_calories":813,"total_distance":14.8359,"total_duration":15,"total_steps":27,"value_max":0,"value_min":0,"info_1":27,"info_2":0,"info_3":null,"info_4":null,"uid":37,"create_time":"2020-09-14 15:48:20"},{"id":8170,"start_time":1599974576000,"end_time":1599975234000,"action_type":"WALK","credential_id":null,"daylight_saving_time":0,"awake":0,"fall_asleep":0,"restless":0,"timezone":8,"total_calories":1671,"total_distance":30.4609,"total_duration":14,"total_steps":54,"value_max":0,"value_min":0,"info_1":43,"info_2":0,"info_3":null,"info_4":null,"uid":37,"create_time":"2020-09-14 15:48:20"},{"id":8171,"start_time":1599924494998,"end_time":1599953749999,"action_type":"SLEEP","credential_id":null,"daylight_saving_time":0,"awake":0,"fall_asleep":11376,"restless":17879,"timezone":8,"total_calories":0,"total_distance":0,"total_duration":0,"total_steps":0,"value_max":0,"value_min":0,"info_1":0,"info_2":0,"info_3":null,"info_4":null,"uid":37,"create_time":"2020-09-14 15:48:20"},{"id":8172,"start_time":1599839274998,"end_time":1599867262999,"action_type":"SLEEP","credential_id":null,"daylight_saving_time":0,"awake":0,"fall_asleep":4759,"restless":23229,"timezone":8,"total_calories":0,"total_distance":0,"total_duration":0,"total_steps":0,"value_max":0,"value_min":0,"info_1":0,"info_2":0,"info_3":null,"info_4":null,"uid":37,"create_time":"2020-09-14 15:48:20"},{"id":8173,"start_time":1599837769998,"end_time":1599838791999,"action_type":"SLEEP","credential_id":null,"daylight_saving_time":0,"awake":0,"fall_asleep":0,"restless":1022,"timezone":8,"total_calories":0,"total_distance":0,"total_duration":0,"total_steps":0,"value_max":0,"value_min":0,"info_1":0,"info_2":0,"info_3":null,"info_4":null,"uid":37,"create_time":"2020-09-14 15:48:20"}],"heartbeat":[{"id":1102,"type":"heartbeat","timezone":0,"value":87,"check_time":1600074545000,"start_time":0,"end_time":0,"credential_id":null,"daylight_saving_time":0,"dirty":0,"request_id":null,"data_type":"0","info_1":"0","info_2":"0","uid":37,"create_time":"2020-09-14 17:09:23"},{"id":1103,"type":"heartbeat","timezone":0,"value":74,"check_time":1600074488000,"start_time":0,"end_time":0,"credential_id":null,"daylight_saving_time":0,"dirty":0,"request_id":null,"data_type":"0","info_1":"0","info_2":"0","uid":37,"create_time":"2020-09-14 17:09:23"},{"id":1099,"type":"heartbeat","timezone":0,"value":62,"check_time":1600014931000,"start_time":0,"end_time":0,"credential_id":null,"daylight_saving_time":0,"dirty":0,"request_id":null,"data_type":"0","info_1":"0","info_2":"0","uid":37,"create_time":"2020-09-14 15:48:20"},{"id":1100,"type":"heartbeat","timezone":0,"value":84,"check_time":1600013762000,"start_time":0,"end_time":0,"credential_id":null,"daylight_saving_time":0,"dirty":0,"request_id":null,"data_type":"0","info_1":"0","info_2":"0","uid":37,"create_time":"2020-09-14 15:48:20"},{"id":1101,"type":"heartbeat","timezone":0,"value":83,"check_time":1599981921000,"start_time":0,"end_time":0,"credential_id":null,"daylight_saving_time":0,"dirty":0,"request_id":null,"data_type":"0","info_1":"0","info_2":"0","uid":37,"create_time":"2020-09-14 15:48:20"}],
 				showImg:false,
 				imgList:[],
-				img_list:
-						{
-							'test_image_63.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.1823916mage_63.jpg',
-							'test_image_70.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.1866972mage_70.jpg',
-							'test_image_59.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.1913092mage_59.jpg',
-							'test_image_48.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.1955185mage_48.jpg',
-							'test_image_49.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.1995993mage_49.jpg',
-							'test_image_71.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.203434mage_71.jpg',
-							'test_image_55.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.2068775mage_55.jpg',
-							'test_image_31.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.2103424mage_31.jpg',
-							'test_image_34.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.2154782mage_34.jpg',
-							'test_image_61.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.2195904mage_61.jpg',
-							'test_image_56.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.223833mage_56.jpg',
-							'test_image_26.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.2276669mage_26.jpg',
-							'test_image_3.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.2317274image_3.jpg',
-							'test_image_60.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.2365344mage_60.jpg',
-							'test_image_66.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.2408183mage_66.jpg',
-							'test_image_58.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.2578263mage_58.jpg',
-							'test_image_57.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.2626488mage_57.jpg',
-							'test_image_53.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.2657623mage_53.jpg',
-							'test_image_64.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.2696848mage_64.jpg',
-							'test_image_28.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.2728965mage_28.jpg',
-							'test_image_36.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.277595mage_36.jpg',
-							'test_image_65.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.2816863mage_65.jpg',
-							'test_image_50.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.2868762mage_50.jpg',
-							'test_image_6.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.2910686image_6.jpg',
-							'test_image_72.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.2950532mage_72.jpg',
-							'test_image_18.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.2994368mage_18.jpg',
-							'test_image_13.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.3033192mage_13.jpg',
-							'test_image_69.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.3073325mage_69.jpg',
-							'test_image_30.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.3122675mage_30.jpg',
-							'test_image_12.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.3167217mage_12.jpg',
-							'test_image_51.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.3210225mage_51.jpg',
-							'test_image_62.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.3249278mage_62.jpg',
-							'test_image_47.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.3281922mage_47.jpg',
-							'test_image_1.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.332119image_1.jpg',
-							'test_image_24.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.3364027mage_24.jpg',
-							'test_image_54.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.3404238mage_54.jpg',
-							'test_image_37.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.3446443mage_37.jpg',
-							'test_image_19.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.3481238mage_19.jpg',
-							'test_image_35.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.3541384mage_35.jpg',
-							'test_image_39.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.3577135mage_39.jpg',
-							'test_image_29.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.3620024mage_29.jpg',
-							'test_image_68.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.365995mage_68.jpg',
-							'test_image_67.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.3708873mage_67.jpg',
-							'test_image_73.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.3748908mage_73.jpg',
-							'test_image_33.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.3794417mage_33.jpg',
-							'test_image_4.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.3833458image_4.jpg',
-							'test_image_52.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.38933mage_52.jpg',
-							'test_image_27.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.3948908mage_27.jpg',
-							'test_image_32.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.3998024mage_32.jpg',
-							'test_image_25.jpg': '/home/cyfee/my_project/web/smart_albums/static/photos/xMiIsQy01MuRhC_/xMiIsQy01MuRhC_1588149521.4052851mage_25.jpg'},
+				img_list: {
+				'12.jpeg': '/smart_albums/static/photos/xMiIsQy01MXT9sv/xMiIsQy01MXT9sv1606303672.546526712.jpg',
+				'1.jpeg': '/smart_albums/static/photos/xMiIsQy01MXT9sv/xMiIsQy01MXT9sv1606303672.55844021.jpg',
+				'10.jpg': '/smart_albums/static/photos/xMiIsQy01MXT9sv/xMiIsQy01MXT9sv1606303672.572965610.jpg',
+				'6.jpg': '/smart_albums/static/photos/xMiIsQy01MXT9sv/xMiIsQy01MXT9sv1606303672.5784786.jpg',
+				'11.jpeg': '/smart_albums/static/photos/xMiIsQy01MXT9sv/xMiIsQy01MXT9sv1606303672.582394811.jpg',
+				'17.jpeg': '/smart_albums/static/photos/xMiIsQy01MXT9sv/xMiIsQy01MXT9sv1606303672.58978517.jpg',
+				'13.jpeg': '/smart_albums/static/photos/xMiIsQy01MXT9sv/xMiIsQy01MXT9sv1606303672.600960313.jpg',
+				'7.jpeg': '/smart_albums/static/photos/xMiIsQy01MXT9sv/xMiIsQy01MXT9sv1606303672.6113997.jpg',
+				'16.jpeg': '/smart_albums/static/photos/xMiIsQy01MXT9sv/xMiIsQy01MXT9sv1606303672.617148216.jpg',
+				'3.jpeg': '/smart_albums/static/photos/xMiIsQy01MXT9sv/xMiIsQy01MXT9sv1606303672.62247133.jpg',
+				'8.jpeg': '/smart_albums/static/photos/xMiIsQy01MXT9sv/xMiIsQy01MXT9sv1606303672.63542278.jpg',
+				'21.png': '/smart_albums/static/photos/xMiIsQy01MXT9sv/xMiIsQy01MXT9sv1606303672.642549521.jpg',
+				'4.jpg': '/smart_albums/static/photos/xMiIsQy01MXT9sv/xMiIsQy01MXT9sv1606303672.64805874.jpg',
+				'5.jpeg': '/smart_albums/static/photos/xMiIsQy01MXT9sv/xMiIsQy01MXT9sv1606303672.65301515.jpg',
+				'15.jpeg': '/smart_albums/static/photos/xMiIsQy01MXT9sv/xMiIsQy01MXT9sv1606303672.673197715.jpg',
+				'19.png': '/smart_albums/static/photos/xMiIsQy01MXT9sv/xMiIsQy01MXT9sv1606303672.681083419.jpg',
+				'18.png': '/smart_albums/static/photos/xMiIsQy01MXT9sv/xMiIsQy01MXT9sv1606303672.68909618.jpg',
+				'20.png': '/smart_albums/static/photos/xMiIsQy01MXT9sv/xMiIsQy01MXT9sv1606303672.697167220.jpg',
+				'2.jpeg': '/smart_albums/static/photos/xMiIsQy01MXT9sv/xMiIsQy01MXT9sv1606303672.70333722.jpg',
+				'14.jpeg': '/smart_albums/static/photos/xMiIsQy01MXT9sv/xMiIsQy01MXT9sv1606303672.709238314.jpg',
+				'9.jpeg': '/smart_albums/static/photos/xMiIsQy01MXT9sv/xMiIsQy01MXT9sv1606303672.7247439.jpg'},
 				fileList: [],
 				access_token:'',
 				refresh_token:'',
@@ -160,12 +133,64 @@
 			this.login()
 			this.initImg()
 
+
 		},
 		mounted(){
 			this.$store.dispatch('setImgList',this.imgList)
 			this.$store.dispatch('setCopyImgList',this.img_list)
+
+			// this.inforList = JSON.parse(JSON.stringify(this.inforList))
+			console.log(this.inforList);
+			let footCountData = []
+			let walking = []
+			let total_calories = []
+			let total_distance = []
+			let total_duration = []
+			this.inforList.forEach((item,index)=>{
+				walking.push(item.total_steps)
+				total_calories.push(item.total_calories)
+				total_distance.push(item.total_distance)
+				total_duration.push(item.total_duration)
+			})
+			walking=eval(walking.join("+"))
+			total_calories=eval(total_calories.join("+"))
+			total_distance=eval(total_distance.join("+"))
+			total_duration=eval(total_duration.join("+"))
+			console.log(walking);
+			console.log(total_calories);
+			console.log(total_distance);
+			console.log(total_duration);
+			// console.log(walking);
+			// var temp = {};
+			// for(var i in this.inforList) {
+			// 	var key= this.inforList[i].action_type;
+			// 	if(temp[key]) {
+			// 		temp[key].total_steps = temp[key].total_steps+ this.inforList[i].total_steps;
+			// 		temp[key].total_distance = temp[key].total_distance+ this.inforList[i].total_distance;
+			// 		temp[key].total_calories = temp[key].total_calories+ this.inforList[i].total_calories;
+			// 	} else {
+			// 		temp[key] = {};
+			// 		temp[key].total_steps = this.inforList[i].total_steps;
+			// 	}
+			// }
+			// for(var k in temp){
+			// 	footCountData.push(temp[k])
+			// }
+			// console.log(footCountData);
 		},
 		methods:{
+			// 	axios.get('/index/watchList',{
+			// 		uid:37,
+			// 		date:'2020-09-14',
+			// 		action_type:'WALK'
+			// 	}).then((res)=> {
+			// 		if (res.status == "200") {
+			//
+			// 		} else {}
+			// 	}).catch( (res) =>{
+			// 		console.log(res);
+			// 	})
+			// },
 			...mapActions([
 				'setImgList',
 				'setCopyImgList'
